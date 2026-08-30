@@ -1,0 +1,52 @@
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: ${CONTAINER_NAME_PREFIX:-gt7}-influxdb
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${DOCKER_INFLUXDB_INIT_USERNAME}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      DOCKER_INFLUXDB_INIT_RETENTION: ${DOCKER_INFLUXDB_INIT_RETENTION:-16w}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana-oss:11.2.0
+    container_name: ${CONTAINER_NAME_PREFIX:-gt7}-grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+
+  collector:
+    build: .
+    container_name: ${CONTAINER_NAME_PREFIX:-gt7}-collector
+    environment:
+      DT_PS5_IP: ${DT_PS5_IP}
+      INFLUXDB_V2_URL: http://influxdb:8086
+      INFLUXDB_V2_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      INFLUXDB_V2_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      INFLUXDB_V2_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+    ports:
+      - "33740:33740/udp"
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+
+volumes:
+  influxdb_data:
+  grafana_data:
