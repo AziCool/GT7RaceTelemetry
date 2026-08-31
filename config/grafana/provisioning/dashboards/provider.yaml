@@ -6,6 +6,8 @@ providers:
     folder: GT7
     type: file
     disableDeletion: false
+    allowUiUpdates: true
+    overwrite: true
     updateIntervalSeconds: 30
     options:
       path: /var/lib/grafana/dashboards

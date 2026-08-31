@@ -1257,6 +1257,43 @@
       ],
       "title": "Ride Height",
       "type": "timeseries"
+    },
+    {
+      "id": 21,
+      "title": "Track Position",
+      "type": "xychart",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "datasource": {
+        "type": "influxdb",
+        "uid": "dt_gt7_dash"
+      },
+      "options": {
+        "legend": {
+          "showLegend": false
+        },
+        "series": [
+          {
+            "name": "Track trace",
+            "x": "pos_X",
+            "y": "pos_Z"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "InfluxDB_v2_Flux",
+            "uid": "dt_gt7_dash"
+          },
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: -30m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\")\r\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])\r\n  |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z)"
+        }
+      ]
     }
   ],
   "refresh": "5s",
