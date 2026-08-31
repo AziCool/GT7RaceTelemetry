@@ -73,6 +73,7 @@ private:
     void fieldPrefix(const char* name) {
         text_ += fieldsStarted_ ? "," : " ";
         text_ += name;
+        text_ += "=";
         fieldsStarted_ = true;
     }
 
