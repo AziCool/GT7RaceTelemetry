@@ -40,6 +40,7 @@ services:
     container_name: ${CONTAINER_NAME_PREFIX:-gt7}-collector
     environment:
       DT_PS5_IP: ${DT_PS5_IP}
+      DT_PACKET_TYPE: ${DT_PACKET_TYPE:-C}
       INFLUXDB_V2_URL: http://influxdb:8086
       INFLUXDB_V2_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
       INFLUXDB_V2_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}

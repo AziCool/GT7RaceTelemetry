@@ -69,8 +69,38 @@ struct PacketA {
     int32_t carCode;
 };
 
+struct PacketB : public PacketA {
+    float wheelRotation;
+    float steeringAngularVelocity;
+    float sway;
+    float heave;
+    float surge;
+};
+
+struct PacketTilda : public PacketB {
+    uint8_t throttleFiltered;
+    uint8_t brakeFiltered;
+    uint8_t unknownUint81;
+    uint8_t unknownUint82;
+    float torqueVectors[4];
+    float energyRecovery;
+    float unknownFloat11;
+};
+
+struct PacketC : public PacketTilda {
+    char surfaceType[4];
+    int32_t currentLap;
+    float wheelSteeringAngle[2];
+    float wheelBase;
+    char carCategory[4];
+};
+
 #pragma pack(pop)
 
 static_assert(sizeof(PacketA) == 296, "GT7 packet A layout changed");
+static_assert(sizeof(PacketB) == 316, "GT7 packet B layout changed");
+static_assert(sizeof(PacketTilda) == 344, "GT7 packet tilde layout changed");
+static_assert(sizeof(PacketC) == 368, "GT7 packet C layout changed");
 constexpr int32_t kGt7Magic = 0x47375330;
 constexpr std::size_t kPacketABytes = sizeof(PacketA);
+constexpr std::size_t kPacketCBytes = sizeof(PacketC);
