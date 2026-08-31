@@ -1272,14 +1272,23 @@
         "type": "influxdb",
         "uid": "dt_gt7_dash"
       },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "show": "points+lines",
+            "lineWidth": 2,
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "pointSize": {
+              "fixed": 2
+            }
+          }
+        },
+        "overrides": []
+      },
       "options": {
         "mapping": "auto",
-        "show": "lines",
-        "lineStyle": {
-          "fill": "solid"
-        },
-        "lineWidth": 2,
-        "pointSize": 2,
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
