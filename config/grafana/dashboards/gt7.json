@@ -1260,6 +1260,7 @@
     },
     {
       "id": 21,
+      "pluginVersion": "11.2.0",
       "title": "2D Car Trajectory",
       "type": "xychart",
       "gridPos": {
