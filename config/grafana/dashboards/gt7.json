@@ -1272,21 +1272,6 @@
         "type": "influxdb",
         "uid": "dt_gt7_dash"
       },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "show": "points+lines",
-            "lineWidth": 2,
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "pointSize": {
-              "fixed": 2
-            }
-          }
-        },
-        "overrides": []
-      },
       "options": {
         "mapping": "auto",
         "legend": {
@@ -1303,7 +1288,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw) |> map(fn: (r) => ({r with best_trace_X: r.pos_X + 5.0, best_trace_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"best_trace_X\", \"best_trace_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\") |> aggregateWindow(every: 250ms, fn: last, createEmpty: false) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw) |> map(fn: (r) => ({r with best_trace_X: r.pos_X + 5.0, best_trace_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"best_trace_X\", \"best_trace_Z\"])"
         },
         {
           "refId": "B",
@@ -1311,7 +1296,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw) |> map(fn: (r) => ({r with current_trace_X: r.pos_X, current_trace_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_trace_X\", \"current_trace_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\") |> aggregateWindow(every: 250ms, fn: last, createEmpty: false) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw) |> map(fn: (r) => ({r with current_trace_X: r.pos_X, current_trace_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_trace_X\", \"current_trace_Z\"])"
         },
         {
           "refId": "G",
@@ -1319,7 +1304,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"telemetry\") |> range(start: -1m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z) |> sort(columns: [\"_time\"], desc: true) |> limit(n: 1) |> map(fn: (r) => ({r with current_marker_X: r.pos_X, current_marker_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_marker_X\", \"current_marker_Z\"])"
+          "query": "from(bucket: \"telemetry\") |> range(start: -1m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\") |> aggregateWindow(every: 250ms, fn: last, createEmpty: false) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z) |> sort(columns: [\"_time\"], desc: true) |> limit(n: 1) |> map(fn: (r) => ({r with current_marker_X: r.pos_X, current_marker_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_marker_X\", \"current_marker_Z\"])"
         }
       ]
     }
