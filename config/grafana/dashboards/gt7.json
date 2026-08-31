@@ -115,7 +115,7 @@
             "type": "influxdb",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"car_speed\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"car_speed\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -172,7 +172,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"boost\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"boost\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -232,7 +232,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"cgear\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"cgear\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
           "refId": "A"
         }
       ],
@@ -292,7 +292,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"total_positions\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"total_positions\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
           "refId": "A"
         },
         {
@@ -301,7 +301,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"current_position\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"current_position\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
           "refId": "B"
         }
       ],
@@ -391,7 +391,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"gt7\" and\r\n    r._field == \"rpm\"\r\n  )",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"gt7\" and\r\n    r._field == \"rpm\"\r\n  )",
           "refId": "A"
         }
       ],
@@ -481,7 +481,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"last_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"last_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
           "refId": "A"
         },
         {
@@ -490,7 +490,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"best_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"best_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
           "refId": "B"
         },
         {
@@ -499,7 +499,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"current_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"current_lap\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n  |> distinct(column: \"_value\")\r\n",
           "refId": "C"
         }
       ],
@@ -589,7 +589,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"throttle\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"throttle\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
           "refId": "Thorttle"
         },
         {
@@ -598,7 +598,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"breaking_force\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"breaking_force\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")\r\n",
           "refId": "Break"
         }
       ],
@@ -688,7 +688,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"fuel_capacity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"fuel_capacity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Capacity"
         },
         {
@@ -697,7 +697,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"fuel_remaining\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"fuel_remaining\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
           "refId": "Remaining"
         }
       ],
@@ -786,7 +786,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Front Left"
         },
         {
@@ -795,7 +795,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
           "refId": "Front Right"
         },
         {
@@ -804,7 +804,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Left"
         },
         {
@@ -813,7 +813,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_speed_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Right"
         }
       ],
@@ -902,7 +902,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Front Left"
         },
         {
@@ -911,7 +911,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
           "refId": "Front Right"
         },
         {
@@ -920,7 +920,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Left"
         },
         {
@@ -929,7 +929,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_slip_ratio_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Right"
         }
       ],
@@ -1018,7 +1018,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Front Left"
         },
         {
@@ -1027,7 +1027,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
           "refId": "Front Right"
         },
         {
@@ -1036,7 +1036,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Left"
         },
         {
@@ -1045,7 +1045,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tire_temp_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Right"
         }
       ],
@@ -1134,7 +1134,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_FL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Front Left"
         },
         {
@@ -1143,7 +1143,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_FR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)",
           "refId": "Front Right"
         },
         {
@@ -1152,7 +1152,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_RL\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Left"
         },
         {
@@ -1161,7 +1161,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"suspension_RR\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "Rear Right"
         }
       ],
@@ -1251,7 +1251,7 @@
             "uid": "dt_gt7_dash"
           },
           "hide": false,
-          "query": "from(bucket: \"initbucket\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"ride_height\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
+          "query": "from(bucket: \"telemetry\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"ride_height\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n",
           "refId": "A"
         }
       ],
