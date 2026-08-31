@@ -1272,8 +1272,28 @@
         "type": "influxdb",
         "uid": "dt_gt7_dash"
       },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "show": "lines",
+            "lineWidth": 2,
+            "fillOpacity": 0
+          }
+        },
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "best_driven_Z" }, "properties": [ { "id": "color", "value": { "mode": "fixed", "fixedColor": "yellow" } }, { "id": "custom.show", "value": "points+lines" }, { "id": "custom.lineStyle", "value": { "fill": "solid" } } ] },
+          { "matcher": { "id": "byName", "options": "best_coasting_Z" }, "properties": [ { "id": "custom.show", "value": "points" }, { "id": "custom.pointSize", "value": { "fixed": 3 } }, { "id": "custom.lineWidth", "value": 0 } ] },
+          { "matcher": { "id": "byName", "options": "best_coasting_Z" }, "properties": [ { "id": "color", "value": { "mode": "fixed", "fixedColor": "yellow" } } ] },
+          { "matcher": { "id": "byName", "options": "best_braking_Z" }, "properties": [ { "id": "custom.lineStyle", "value": { "fill": "dash", "dash": [ 2, 4 ] } }, { "id": "color", "value": { "mode": "fixed", "fixedColor": "red" } }, { "id": "custom.lineWidth", "value": 3 } ] },
+          { "matcher": { "id": "byName", "options": "current_driven_Z" }, "properties": [ { "id": "color", "value": { "mode": "fixed", "fixedColor": "cyan" } }, { "id": "custom.show", "value": "points+lines" }, { "id": "custom.lineStyle", "value": { "fill": "solid" } } ] },
+          { "matcher": { "id": "byName", "options": "current_coasting_Z" }, "properties": [ { "id": "custom.show", "value": "points" }, { "id": "custom.pointSize", "value": { "fixed": 3 } }, { "id": "custom.lineWidth", "value": 0 } ] },
+          { "matcher": { "id": "byName", "options": "current_coasting_Z" }, "properties": [ { "id": "color", "value": { "mode": "fixed", "fixedColor": "cyan" } } ] },
+          { "matcher": { "id": "byName", "options": "current_braking_Z" }, "properties": [ { "id": "custom.lineStyle", "value": { "fill": "dash", "dash": [ 2, 4 ] } }, { "id": "color", "value": { "mode": "fixed", "fixedColor": "orange" } }, { "id": "custom.lineWidth", "value": 3 } ] },
+          { "matcher": { "id": "byName", "options": "current_marker_Z" }, "properties": [ { "id": "custom.show", "value": "points" }, { "id": "custom.pointSize", "value": { "fixed": 10 } }, { "id": "color", "value": { "mode": "fixed", "fixedColor": "white" } } ] }
+        ]
+      },
       "options": {
-        "mapping": "auto",
+        "mapping": "manual",
         "show": "lines",
         "lineStyle": {
           "fill": "solid"
@@ -1286,42 +1306,13 @@
           "showLegend": true
         },
         "series": [
-          {
-            "name": "Best lap - driven",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "solid"
-          },
-          {
-            "name": "Best lap - coasting",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "dots"
-          },
-          {
-            "name": "Best lap - braking",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "dash"
-          },
-          {
-            "name": "Current lap - driven",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "solid"
-          },
-          {
-            "name": "Current lap - coasting",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "dots"
-          },
-          {
-            "name": "Current lap - braking",
-            "x": "pos_X",
-            "y": "pos_Z",
-            "lineStyle": "dash"
-          }
+          { "name": { "fixed": "Best lap - driven" }, "frame": { "matcher": { "id": "byIndex", "options": 0 } }, "x": { "matcher": { "id": "byName", "options": "best_driven_X" } }, "y": { "matcher": { "id": "byName", "options": "best_driven_Z" } } },
+          { "name": { "fixed": "Best lap - coasting" }, "frame": { "matcher": { "id": "byIndex", "options": 1 } }, "x": { "matcher": { "id": "byName", "options": "best_coasting_X" } }, "y": { "matcher": { "id": "byName", "options": "best_coasting_Z" } } },
+          { "name": { "fixed": "Best lap - braking" }, "frame": { "matcher": { "id": "byIndex", "options": 2 } }, "x": { "matcher": { "id": "byName", "options": "best_braking_X" } }, "y": { "matcher": { "id": "byName", "options": "best_braking_Z" } } },
+          { "name": { "fixed": "Current lap - driven" }, "frame": { "matcher": { "id": "byIndex", "options": 3 } }, "x": { "matcher": { "id": "byName", "options": "current_driven_X" } }, "y": { "matcher": { "id": "byName", "options": "current_driven_Z" } } },
+          { "name": { "fixed": "Current lap - coasting" }, "frame": { "matcher": { "id": "byIndex", "options": 4 } }, "x": { "matcher": { "id": "byName", "options": "current_coasting_X" } }, "y": { "matcher": { "id": "byName", "options": "current_coasting_Z" } } },
+          { "name": { "fixed": "Current lap - braking" }, "frame": { "matcher": { "id": "byIndex", "options": 5 } }, "x": { "matcher": { "id": "byName", "options": "current_braking_X" } }, "y": { "matcher": { "id": "byName", "options": "current_braking_Z" } } },
+          { "name": { "fixed": "Current car" }, "frame": { "matcher": { "id": "byIndex", "options": 6 } }, "x": { "matcher": { "id": "byName", "options": "current_marker_X" } }, "y": { "matcher": { "id": "byName", "options": "current_marker_Z" } } }
         ]
       },
       "targets": [
@@ -1331,7 +1322,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.throttle > 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with pos_X: r.pos_X + 5.0})) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.throttle > 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with best_driven_X: r.pos_X + 5.0, best_driven_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"best_driven_X\", \"best_driven_Z\"])"
         },
         {
           "refId": "B",
@@ -1339,7 +1330,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.throttle > 0.5 and r.breaking_force <= 0.5) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.throttle > 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with current_driven_X: r.pos_X, current_driven_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_driven_X\", \"current_driven_Z\"])"
         },
         {
           "refId": "C",
@@ -1347,7 +1338,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.throttle <= 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with pos_X: r.pos_X + 5.0})) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.throttle <= 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with best_coasting_X: r.pos_X + 5.0, best_coasting_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"best_coasting_X\", \"best_coasting_Z\"])"
         },
         {
           "refId": "D",
@@ -1355,7 +1346,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.breaking_force > 0.5) |> map(fn: (r) => ({r with pos_X: r.pos_X + 5.0 + (if r.current_lap_ms % 2 == 0 then 0.8 else -0.8), pos_Z: r.pos_Z + (if r.current_lap_ms % 2 == 0 then 0.8 else -0.8)})) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"current_lap_ms\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw and exists r.current_lap_ms)\r\nlapTimes = base |> group(columns: [\"current_lap_raw\"]) |> max(column: \"current_lap_ms\") |> group() |> sort(columns: [\"current_lap_ms\"]) |> limit(n: 1)\r\nbestLap = lapTimes |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == bestLap.current_lap_raw and r.breaking_force > 0.5) |> map(fn: (r) => ({r with best_braking_X: r.pos_X + 5.0 + (if r.current_lap_ms % 2 == 0 then 0.8 else -0.8), best_braking_Z: r.pos_Z + (if r.current_lap_ms % 2 == 0 then 0.8 else -0.8)})) |> keep(columns: [\"_time\", \"best_braking_X\", \"best_braking_Z\"])"
         },
         {
           "refId": "E",
@@ -1363,7 +1354,7 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.throttle <= 0.5 and r.breaking_force <= 0.5) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.throttle <= 0.5 and r.breaking_force <= 0.5) |> map(fn: (r) => ({r with current_coasting_X: r.pos_X, current_coasting_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_coasting_X\", \"current_coasting_Z\"])"
         },
         {
           "refId": "F",
@@ -1371,7 +1362,15 @@
             "type": "InfluxDB_v2_Flux",
             "uid": "dt_gt7_dash"
           },
-          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.breaking_force > 0.5) |> map(fn: (r) => ({r with pos_X: r.pos_X + (if r.current_lap_raw % 2 == 0 then 0.8 else -0.8), pos_Z: r.pos_Z + (if r.current_lap_raw % 2 == 0 then 0.8 else -0.8)})) |> keep(columns: [\"_time\", \"pos_X\", \"pos_Z\"])"
+          "query": "base = from(bucket: \"telemetry\") |> range(start: -30m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\" or r[\"_field\"] == \"current_lap_raw\" or r[\"_field\"] == \"throttle\" or r[\"_field\"] == \"breaking_force\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z and exists r.current_lap_raw)\r\ncurrentLap = base |> group() |> max(column: \"current_lap_raw\") |> findRecord(fn: (key) => true, idx: 0)\r\nbase |> filter(fn: (r) => r.current_lap_raw == currentLap.current_lap_raw and r.breaking_force > 0.5) |> map(fn: (r) => ({r with current_braking_X: r.pos_X + (if r.current_lap_raw % 2 == 0 then 0.8 else -0.8), current_braking_Z: r.pos_Z + (if r.current_lap_raw % 2 == 0 then 0.8 else -0.8)})) |> keep(columns: [\"_time\", \"current_braking_X\", \"current_braking_Z\"])"
+        },
+        {
+          "refId": "G",
+          "datasource": {
+            "type": "InfluxDB_v2_Flux",
+            "uid": "dt_gt7_dash"
+          },
+          "query": "from(bucket: \"telemetry\") |> range(start: -1m) |> filter(fn: (r) => r[\"_measurement\"] == \"gt7\") |> filter(fn: (r) => r[\"_field\"] == \"pos_X\" or r[\"_field\"] == \"pos_Z\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> filter(fn: (r) => exists r.pos_X and exists r.pos_Z) |> sort(columns: [\"_time\"], desc: true) |> limit(n: 1) |> map(fn: (r) => ({r with current_marker_X: r.pos_X, current_marker_Z: r.pos_Z})) |> keep(columns: [\"_time\", \"current_marker_X\", \"current_marker_Z\"])"
         }
       ]
     }
