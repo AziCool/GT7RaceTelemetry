@@ -1273,6 +1273,13 @@
         "uid": "dt_gt7_dash"
       },
       "options": {
+        "mapping": "auto",
+        "show": "lines",
+        "lineStyle": {
+          "fill": "solid"
+        },
+        "lineWidth": 2,
+        "pointSize": 2,
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
